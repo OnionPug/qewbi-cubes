@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://h1tcug5xfamr"]
+
+[ext_resource type="Script" uid="uid://18sskjwavshd" path="res://scripts/player_head.gd" id="1_c3vvt"]
+[ext_resource type="Texture2D" uid="uid://cumixbrbgcqg7" path="res://assets/Qewbi Sprites/Qewbi Headless Spritesheet.png" id="1_fgj86"]
+[ext_resource type="Texture2D" uid="uid://b1plab3qhbldp" path="res://assets/Qewbi Sprites/Qewbi Dizzy Crownless Sprites.png" id="2_aiali"]
+[ext_resource type="Script" uid="uid://cl48y4dkypd5m" path="res://scenes/head_effect_states.gd" id="2_q6iov"]
+[ext_resource type="Script" uid="uid://cydhxxt0ayo4v" path="res://scripts/head_normal.gd" id="3_3h80p"]
+[ext_resource type="Script" uid="uid://dcw6g1fjfytqu" path="res://scripts/camera.gd" id="6_3h80p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiali"]
+atlas = ExtResource("1_fgj86")
+region = Rect2(1920, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3vvt"]
+atlas = ExtResource("2_aiali")
+region = Rect2(0, 640, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3vvt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiali")
+}],
+"loop": true,
+"name": &"crown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3vvt")
+}],
+"loop": true,
+"name": &"crownless",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fgj86"]
+radius = 29.0172
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3vvt"]
+radius = 45.0
+
+[node name="PlayerHead" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 87
+platform_floor_layers = 4294967042
+script = ExtResource("1_c3vvt")
+
+[node name="EffectStates" type="Node" parent="."]
+script = ExtResource("2_q6iov")
+
+[node name="Normal" type="Node" parent="EffectStates"]
+script = ExtResource("3_3h80p")
+
+[node name="Flatten" type="Node" parent="EffectStates"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.23, 0.23)
+sprite_frames = SubResource("SpriteFrames_c3vvt")
+animation = &"crownless"
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fgj86")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_c3vvt")
+debug_color = Color(1, 0.00392157, 0.0745098, 0.0196078)
+
+[node name="Camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 50.0
+script = ExtResource("6_3h80p")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]

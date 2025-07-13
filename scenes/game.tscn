@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://da22gbcfts56s"]
+
+[ext_resource type="PackedScene" uid="uid://bqak124pivc10" path="res://scenes/world_0.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ca0fubfray5vk" path="res://scenes/player_basic.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dcw6g1fjfytqu" path="res://scripts/camera.gd" id="2_yqjtg"]
+
+[node name="Game" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="World 0" parent="World" instance=ExtResource("1_lnu2h")]
+position = Vector2(-20, 416)
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="PlayerBasic" parent="Player" instance=ExtResource("1_uwrxv")]
+
+[node name="Camera" type="Camera2D" parent="Player/PlayerBasic"]
+position = Vector2(0, 23)
+position_smoothing_enabled = true
+script = ExtResource("2_yqjtg")
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(0, 23)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Tutorial" type="Label" parent="CanvasLayer"]
+offset_left = 338.0
+offset_top = -329.0
+offset_right = 499.0
+offset_bottom = -176.0
+scale = Vector2(1.63225, 1.56646)
+text = "Controls:
+WASD for movement
+1: normal
+2: flatten
+3: headless
+0: dizzy"
