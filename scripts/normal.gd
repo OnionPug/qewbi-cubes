@@ -7,6 +7,7 @@ var speed = 500
 func initialize():
 	#reset changes made by other states
 	print("normal again!")
+	owner.set_collision_mask_value($"..".layer_dict["normal"],true)
 	owner.shield = 100
 	owner.aggro = true
 	$"../../SpriteHead".visible = true
@@ -33,4 +34,5 @@ func take_damage():
 	return
 
 func exit():
+	owner.set_collision_mask_value($"..".layer_dict["normal"],false)
 	return

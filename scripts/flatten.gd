@@ -10,6 +10,7 @@ var struggle = 0:
 			struggle = 0
 signal escape
 
+#collision layers - collide with all statuses except for flatten and headless
 
 func initialize():
 	print("flattened...!")
@@ -18,8 +19,9 @@ func initialize():
 		x.play("flatten")
 		x.flip_h = false
 	$FlattenSound.play()
-	owner.set_collision_mask_value(1, false)
+	owner.set_collision_mask_value($"..".layer_dict["flatten"],true)
 	owner.z_index = -1
+	$"../../Hitbox".shape.height = 70
 	#escape condition
 	await escape
 	if $"..".prevstate != $"../../EffectStates".states_dict["flatten"]:
@@ -51,6 +53,7 @@ func take_damage(damage = 0):
 	print("flattened again...")
 	speed = 0
 	struggle_threshold = 175
+	$"../../SpriteBody".scale.x = 0.28
 	return
 
 
@@ -58,16 +61,20 @@ func exit():
 	struggle = 0
 	speed = 50
 	struggle_threshold = 100
-	owner.set_collision_mask_value(1,true)
+	$"../../SpriteBody".scale.x = 0.23
+	owner.set_collision_mask_value($"..".layer_dict["flatten"],false)
 	owner.z_index = 0
+	$"../../Hitbox".shape.height = 48
 	owner.aggro = true
 
 
-func _on_hitbox_body_entered(_body: Node2D) -> void:
-	colliding = true
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Hazards"):
+		colliding = true
 	pass # Replace with function body.
 
 
-func _on_hitbox_body_exited(_body: Node2D) -> void:
-	colliding = false
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Hazards"):
+		colliding = false
 	pass # Replace with function body.

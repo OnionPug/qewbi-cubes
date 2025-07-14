@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr5qwln636jln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfi1y"]
+
+[node name="GateFlatten" type="StaticBody2D"]
+collision_layer = 64016
+collision_mask = 0
+
+[node name="Shadow" type="ColorRect" parent="."]
+offset_left = -21.0
+offset_top = -13.0
+offset_right = 21.0
+offset_bottom = 7.0
+color = Color(0.190396, 0.0921057, 0.227161, 0.141176)
+
+[node name="Sprite" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.902113, 0.7917, 0.91, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_pfi1y")

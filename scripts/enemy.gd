@@ -1,5 +1,7 @@
 extends Node
 
+class_name Enemy
+
 #store effect indices
 var effect_level = {
 	"none": 0,

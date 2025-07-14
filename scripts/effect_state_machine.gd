@@ -32,6 +32,15 @@ func _ready() -> void:
 		"ui_3": headless,
 	}
 
+var layer_dict = {
+	"dead": 16,
+	"normal": 5,
+	"flatten": 9,
+	"headless": 10,
+	"melt": 11,
+	"freeze": 12,
+}
+
 var debug_inputs = ["ui_0", "ui_1", "ui_2", "ui_3"]
 
 func _process(_delta: float) -> void:

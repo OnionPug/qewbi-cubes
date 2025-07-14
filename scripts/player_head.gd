@@ -5,8 +5,11 @@ var health = 1
 #restores after every recovery
 var shield = 500
 #toggles enemy aggression
-var aggro = true
-
+var aggro = true:
+	set(value):
+		aggro = value
+		ai_off.emit()
+signal ai_off
 signal head_collected
 
 func take_damage(_attacker, type, sp_damage, _hp_damage):

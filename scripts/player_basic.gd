@@ -7,7 +7,11 @@ var health = 10
 #restores after every recovery
 var shield = 100
 #toggles enemy aggression
-var aggro = true
+var aggro = true:
+	set(value):
+		aggro = value
+		ai_off.emit()
+signal ai_off
 #gets name of killer
 var killer
 

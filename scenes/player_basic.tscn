@@ -351,7 +351,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55blg"]
 radius = 9.68483
-height = 26.9023
+height = 48.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bk157"]
 radius = 16.0
@@ -385,31 +385,30 @@ script = ExtResource("5_i44o6")
 position = Vector2(5.96046e-08, 9.56358)
 scale = Vector2(0.229886, 0.229886)
 sprite_frames = SubResource("SpriteFrames_tr13c")
-animation = &"dizzyrun"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.9263
 
 [node name="SpriteHead" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 9.564)
 scale = Vector2(0.23, 0.23)
 sprite_frames = SubResource("SpriteFrames_ht2pu")
-animation = &"dizzy_crownless"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.791686
 
-[node name="Hurtbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 61)
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 58)
 rotation = 4.71239
 scale = Vector2(1.85858, 1.85858)
 shape = SubResource("CapsuleShape2D_55blg")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-2.72848e-12, 60)
 rotation = -1.57079
 scale = Vector2(1.25437, 1.25437)
 shape = SubResource("CapsuleShape2D_bk157")
 
-[connection signal="body_entered" from="Hitbox" to="EffectStates/Flatten" method="_on_hitbox_body_entered"]
-[connection signal="body_exited" from="Hitbox" to="EffectStates/Flatten" method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="Hurtbox" to="EffectStates/Flatten" method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hurtbox" to="EffectStates/Flatten" method="_on_hitbox_body_exited"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://da22gbcfts56s"]
 
-[ext_resource type="PackedScene" uid="uid://bqak124pivc10" path="res://scenes/world_0.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ddus41d5bg51a" path="res://scenes/world_1_0.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ca0fubfray5vk" path="res://scenes/player_basic.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dcw6g1fjfytqu" path="res://scripts/camera.gd" id="2_yqjtg"]
 
@@ -8,7 +8,7 @@
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="World 0" parent="World" instance=ExtResource("1_lnu2h")]
+[node name="World 1-0" parent="World" instance=ExtResource("1_lnu2h")]
 
 [node name="Player" type="Node2D" parent="."]
 

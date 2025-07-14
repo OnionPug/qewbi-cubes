@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bhnv0lexv4jdg" path="res://scripts/piston_hazard.gd" id="1_48wr7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_48wr7"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyw34"]
 
-[node name="PistonHazard" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48wr7"]
+
+[node name="PistonHazard" type="StaticBody2D" groups=["Hazards"]]
 z_as_relative = false
+collision_layer = 64016
 collision_mask = 0
 script = ExtResource("1_48wr7")
 
@@ -40,6 +41,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.7644, 0.825067, 0.91, 1)
 
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(1.9621, 1.9621)
+shape = SubResource("RectangleShape2D_oyw34")
+
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 34
@@ -49,12 +54,4 @@ scale = Vector2(1.72097, 1.72097)
 shape = SubResource("RectangleShape2D_48wr7")
 debug_color = Color(0.977882, 0, 0.400619, 0.42)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-scale = Vector2(1.9621, 1.9621)
-shape = SubResource("RectangleShape2D_oyw34")
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
