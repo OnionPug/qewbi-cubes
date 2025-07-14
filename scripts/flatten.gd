@@ -1,5 +1,6 @@
 extends Node
 
+var colliding = false
 var speed = 50
 var struggle_threshold = 100
 var struggle = 0:
@@ -17,7 +18,8 @@ func initialize():
 		x.play("flatten")
 		x.flip_h = false
 	$FlattenSound.play()
-	$"../../Hitbox".set_deferred("disabled", true)
+	owner.set_collision_mask_value(1, false)
+	owner.z_index = -1
 	#escape condition
 	await escape
 	if $"..".prevstate != $"../../EffectStates".states_dict["flatten"]:
@@ -38,7 +40,8 @@ func active():
 		for x in [$"../../SpriteBody", $"../../SpriteHead"]: x.position = Vector2(randf_range(-1,1),randf_range(-1,1))
 	else: 
 		for x in [$"../../SpriteBody", $"../../SpriteHead"]: x.position = Vector2(0,0)
-	if struggle >= struggle_threshold:
+	
+	if struggle >= struggle_threshold and colliding == false:
 		escape.emit()
 	else: struggle -= 5
 
@@ -55,5 +58,16 @@ func exit():
 	struggle = 0
 	speed = 50
 	struggle_threshold = 100
-	$"../../Hitbox".set_deferred("disabled", false)
+	owner.set_collision_mask_value(1,true)
+	owner.z_index = 0
 	owner.aggro = true
+
+
+func _on_hitbox_body_entered(_body: Node2D) -> void:
+	colliding = true
+	pass # Replace with function body.
+
+
+func _on_hitbox_body_exited(_body: Node2D) -> void:
+	colliding = false
+	pass # Replace with function body.

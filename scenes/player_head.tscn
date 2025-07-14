@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://h1tcug5xfamr"]
+[gd_scene load_steps=16 format=3 uid="uid://h1tcug5xfamr"]
 
 [ext_resource type="Script" uid="uid://18sskjwavshd" path="res://scripts/player_head.gd" id="1_c3vvt"]
 [ext_resource type="Texture2D" uid="uid://cumixbrbgcqg7" path="res://assets/Qewbi Sprites/Qewbi Headless Spritesheet.png" id="1_fgj86"]
 [ext_resource type="Texture2D" uid="uid://b1plab3qhbldp" path="res://assets/Qewbi Sprites/Qewbi Dizzy Crownless Sprites.png" id="2_aiali"]
 [ext_resource type="Script" uid="uid://cl48y4dkypd5m" path="res://scenes/head_effect_states.gd" id="2_q6iov"]
 [ext_resource type="Script" uid="uid://cydhxxt0ayo4v" path="res://scripts/head_normal.gd" id="3_3h80p"]
+[ext_resource type="Script" uid="uid://xyjfisnrjnx3" path="res://scripts/head_flatten.gd" id="4_fcaqy"]
 [ext_resource type="Script" uid="uid://dcw6g1fjfytqu" path="res://scripts/camera.gd" id="6_3h80p"]
+[ext_resource type="Texture2D" uid="uid://c8ommp5wnccsg" path="res://assets/Qewbi Sprites/Qewbi Flat Spritesheet.png" id="7_bwr72"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aiali"]
 atlas = ExtResource("1_fgj86")
@@ -14,6 +16,14 @@ region = Rect2(1920, 640, 640, 640)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3vvt"]
 atlas = ExtResource("2_aiali")
 region = Rect2(0, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q51na"]
+atlas = ExtResource("7_bwr72")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d846"]
+atlas = ExtResource("7_bwr72")
+region = Rect2(1280, 0, 640, 640)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3vvt"]
 animations = [{
@@ -32,6 +42,23 @@ animations = [{
 "loop": true,
 "name": &"crownless",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_q51na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d846")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q51na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d846")
+}],
+"loop": true,
+"name": &"flatten",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgj86"]
@@ -42,8 +69,12 @@ radius = 45.0
 
 [node name="PlayerHead" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
-collision_mask = 87
-platform_floor_layers = 4294967042
+collision_mask = 85
+wall_min_slide_angle = 0.0
+floor_stop_on_slope = false
+floor_block_on_wall = false
+platform_floor_layers = 4294967072
+platform_wall_layers = 1
 script = ExtResource("1_c3vvt")
 
 [node name="EffectStates" type="Node" parent="."]
@@ -53,11 +84,13 @@ script = ExtResource("2_q6iov")
 script = ExtResource("3_3h80p")
 
 [node name="Flatten" type="Node" parent="EffectStates"]
+script = ExtResource("4_fcaqy")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.23, 0.23)
 sprite_frames = SubResource("SpriteFrames_c3vvt")
-animation = &"crownless"
+animation = &"flatten"
+autoplay = "crown"
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fgj86")

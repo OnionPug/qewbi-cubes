@@ -11,11 +11,11 @@ func initialize():
 	owner.shield = 50
 	owner.aggro = false
 	$"../../SpriteHead".visible = false
-	$"../../Hitbox".set_deferred("disabled", false)
 	if head_active == false:
 		head_active = true
 		head = new_head.instantiate()
 		$"../../..".add_child(head)
+		$"../../../PlayerHead/Camera".zoom = $"../../Camera".zoom
 		head.global_position = owner.global_position
 		head.head_collected.connect(exit)
 		head.get_child(-1).make_current()
@@ -51,6 +51,7 @@ func take_damage():
 
 func exit():
 	head_active = false
+	$"../../Camera".zoom = $"../../../PlayerHead/Camera".zoom
 	$"../../SpriteHead".visible = true
 	print("got my head back...")
 	$"..".state = $"..".states_dict["normal"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ca0fubfray5vk"]
+[gd_scene load_steps=57 format=3 uid="uid://ca0fubfray5vk"]
 
 [ext_resource type="Script" uid="uid://e3jw8c1pwfrj" path="res://scripts/player_basic.gd" id="1_55blg"]
 [ext_resource type="Script" uid="uid://d1chhu5o7tqxu" path="res://scripts/effect_state_machine.gd" id="2_16fnu"]
@@ -353,6 +353,10 @@ animations = [{
 radius = 9.68483
 height = 26.9023
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bk157"]
+radius = 16.0
+height = 55.8051
+
 [node name="PlayerBasic" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 85
@@ -393,8 +397,19 @@ animation = &"dizzy_crownless"
 autoplay = "idle"
 frame_progress = 0.791686
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 61)
 rotation = 4.71239
 scale = Vector2(1.85858, 1.85858)
 shape = SubResource("CapsuleShape2D_55blg")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2.72848e-12, 60)
+rotation = -1.57079
+scale = Vector2(1.25437, 1.25437)
+shape = SubResource("CapsuleShape2D_bk157")
+
+[connection signal="body_entered" from="Hitbox" to="EffectStates/Flatten" method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="EffectStates/Flatten" method="_on_hitbox_body_exited"]

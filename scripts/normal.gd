@@ -11,7 +11,6 @@ func initialize():
 	owner.aggro = true
 	$"../../SpriteHead".visible = true
 	$"../../SpriteBody".visible = true
-	$"../../Hitbox".set_deferred("disabled", false)
 	return
 
 func active():

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dknvtslac01a5"]
+
+[ext_resource type="Texture2D" uid="uid://bf31ergba1ima" path="res://assets/Circle.png" id="1_v0xau"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ffj6"]
+
+[node name="Portal" type="Area2D"]
+collision_mask = 2
+
+[node name="Circle" type="Sprite2D" parent="."]
+self_modulate = Color(0.936886, 0.524818, 0.724959, 1)
+scale = Vector2(0.13833, 0.13833)
+texture = ExtResource("1_v0xau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7.16538, 7.16538)
+shape = SubResource("CircleShape2D_1ffj6")

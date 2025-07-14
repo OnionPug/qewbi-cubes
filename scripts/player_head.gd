@@ -12,7 +12,9 @@ signal head_collected
 func take_damage(_attacker, type, sp_damage, _hp_damage):
 	var state = $EffectStates.state
 	var states_dict = $EffectStates.states_dict
+	shield -= sp_damage
 	if shield <= 0:
+		print("hit")
 		health = 0
 		if state in [states_dict["normal"], states_dict["flatten"]]:
 			$EffectStates.state = states_dict[type]

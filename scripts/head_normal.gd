@@ -14,6 +14,8 @@ func active(delta):
 	owner.velocity = speed*direction*delta + a
 	owner.move_and_slide()
 	
+	owner.up_direction = a + Vector2(0,0.01)
+	
 	#animation
 	owner.rotation += delta*owner.velocity.x*0.015 + owner.velocity.y*0.0001
 	return
