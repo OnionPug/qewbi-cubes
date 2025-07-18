@@ -2,6 +2,7 @@ extends Node
 
 var colliding = false
 var speed = 50
+var struggle_power = 35
 var struggle_threshold = 100
 var struggle = 0:
 	set(value):
@@ -14,14 +15,28 @@ signal escape
 
 func initialize():
 	print("flattened...!")
+	
+	#initialize sprite
 	owner.aggro = false
 	for x in [$"../../SpriteBody", $"../../SpriteHead"]: 
 		x.play("flatten")
 		x.flip_h = false
+	
+	if $"..".prevstate == $"..".states_dict["dead"]:
+		$"../../SpriteHead".play("dizzy_flatten")
+		struggle_power = 1
+		speed = 0
+	else:
+		struggle_power = 35
+		speed = 50
+		
+	
 	$FlattenSound.play()
 	owner.set_collision_mask_value($"..".layer_dict["flatten"],true)
 	owner.z_index = -1
 	$"../../Hitbox".shape.height = 70
+	
+	
 	#escape condition
 	await escape
 	if $"..".prevstate != $"../../EffectStates".states_dict["flatten"]:
@@ -37,7 +52,7 @@ func active():
 	
 	for x in ["move_left","move_right","move_up","move_down"]:
 		if Input.is_action_just_pressed(x) == true:
-			struggle += 35
+			struggle += struggle_power
 	if struggle > 0: 
 		for x in [$"../../SpriteBody", $"../../SpriteHead"]: x.position = Vector2(randf_range(-1,1),randf_range(-1,1))
 	else: 
@@ -54,6 +69,8 @@ func take_damage(damage = 0):
 	speed = 0
 	struggle_threshold = 175
 	$"../../SpriteBody".scale.x = 0.28
+	$FlattenSound.pitch_scale = 0.9
+	$FlattenSound.play()
 	return
 
 
@@ -65,6 +82,7 @@ func exit():
 	owner.set_collision_mask_value($"..".layer_dict["flatten"],false)
 	owner.z_index = 0
 	$"../../Hitbox".shape.height = 48
+	$FlattenSound.pitch_scale = 1
 	owner.aggro = true
 
 

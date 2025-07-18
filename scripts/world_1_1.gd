@@ -16,5 +16,5 @@ func _ready() -> void:
 
 func _on_portal_body_entered(body: Node2D) -> void:
 	if body.name == "PlayerBasic":
-		change_worlds(self, "res://scenes/world_0.tscn")
+		change_worlds(self, "res://scenes/qewbi_apartment.tscn")
 	return

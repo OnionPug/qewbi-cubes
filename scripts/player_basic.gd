@@ -22,7 +22,7 @@ func take_damage(attacker, type, sp_damage, hp_damage):
 	shield -= sp_damage
 	if shield <= 0:
 		health -= hp_damage
-		if state in [states_dict["normal"], states_dict["headless"]]:
+		if state in [states_dict["normal"], states_dict["headless"], states_dict["dead"]]:
 			$EffectStates.state = states_dict[type]
 		elif state == states_dict[type]:
 				state.take_damage(sp_damage)

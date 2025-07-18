@@ -89,7 +89,7 @@ script = ExtResource("4_fcaqy")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.23, 0.23)
 sprite_frames = SubResource("SpriteFrames_c3vvt")
-animation = &"flatten"
+animation = &"crownless"
 autoplay = "crown"
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]

@@ -48,6 +48,7 @@ func _process(_delta: float) -> void:
 	for i in debug_inputs:
 		if Input.is_action_just_pressed(i):
 			state = states_dict[i]
+	
 	if state == dead:
 		state.active(owner.killer)
 	else:

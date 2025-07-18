@@ -2,7 +2,7 @@ extends Node
 
 var speed = 500
 
-
+@onready var attack = $Attack
 
 func initialize():
 	#reset changes made by other states
@@ -28,10 +28,16 @@ func active():
 	
 	$"../../SpriteHead".flip_h = owner.global_position.direction_to(owner.get_global_mouse_position()).x >= 0
 	if direction.x != 0: $"../../SpriteBody".flip_h = direction.x > 0
+	
+	#shooting
+	if Input.is_action_pressed("mouse_primary"):
+		attack.basic()
+
 
 func take_damage():
 	owner.shield = 100
 	return
+
 
 func exit():
 	owner.set_collision_mask_value($"..".layer_dict["normal"],false)

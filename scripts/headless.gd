@@ -8,9 +8,15 @@ var head_active = false
 
 func initialize():
 	print("head fell off...")
+	
+	
 	owner.shield = 50
 	owner.aggro = false
 	$"../../SpriteHead".visible = false
+	
+	
+	
+	#spawn in a head that is controlled by the mouse
 	if head_active == false:
 		head_active = true
 		head = new_head.instantiate()
@@ -19,7 +25,10 @@ func initialize():
 		head.global_position = owner.global_position
 		head.head_collected.connect(exit)
 		head.get_child(-1).make_current()
-	#spawn in a head that is controlled by the mouse, placed in the Player folder
+	
+	if $"..".prevstate == $"..".states_dict["dead"]:
+		head.get_child(1).play("crownless")
+	
 	return
 
 

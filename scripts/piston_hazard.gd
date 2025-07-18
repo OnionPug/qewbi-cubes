@@ -5,7 +5,7 @@ var down_time = 0.5
 var start_time = 0
 
 const SP_DAMAGE = 500
-const HP_DAMAGE = 0
+const HP_DAMAGE = 0.25
 const TYPE = "flatten"
 
 var slamdown : bool = false
