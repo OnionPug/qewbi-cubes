@@ -3,7 +3,7 @@ extends CharacterBody2D
 #code exclusively for movement of this specific player body
 
 #cannot be replenished by any means
-var health = 10
+var health = 5
 #restores after every recovery
 var shield = 100
 #toggles enemy aggression
@@ -28,3 +28,4 @@ func take_damage(attacker, type, sp_damage, hp_damage):
 				state.take_damage(sp_damage)
 		if health <= 0:
 			killer = attacker
+			$EffectStates.state = states_dict['dead']

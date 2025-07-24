@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ca0fubfray5vk" path="res://scenes/player_basic.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dcw6g1fjfytqu" path="res://scripts/camera.gd" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://b7waiw3f7ko7h" path="res://scenes/world_1_1.tscn" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://dcbu1adi1wc7g" path="res://scenes/world_apartment.tscn" id="3_iywne"]
 [ext_resource type="Script" uid="uid://b8nancwbsi1e0" path="res://scripts/health_bar.gd" id="4_iywne"]
 [ext_resource type="Script" uid="uid://c8og2yvm35qwa" path="res://scripts/shield_bar.gd" id="4_lbhrr"]
 
@@ -33,7 +33,6 @@ offset_top = 13.0
 offset_right = 321.0
 offset_bottom = 40.0
 scale = Vector2(1, 0.957616)
-max_value = 10.0
 script = ExtResource("4_iywne")
 
 [node name="ShieldBar" type="TextureProgressBar" parent="UI"]
@@ -62,7 +61,7 @@ texture = SubResource("GradientTexture2D_u5sy4")
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="World 1-1" parent="World" instance=ExtResource("3_iywne")]
+[node name="Qewbi Apartment" parent="World" instance=ExtResource("3_iywne")]
 
 [node name="Player" type="Node2D" parent="."]
 

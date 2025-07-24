@@ -398,14 +398,13 @@ stream = ExtResource("5_10nge")
 script = ExtResource("5_i44o6")
 
 [node name="SpriteBody" type="AnimatedSprite2D" parent="."]
-position = Vector2(5.96046e-08, -48.4004)
+position = Vector2(5.96046e-08, 0)
 scale = Vector2(0.229886, 0.229886)
 sprite_frames = SubResource("SpriteFrames_tr13c")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="SpriteHead" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -48.4)
 scale = Vector2(0.23, 0.23)
 sprite_frames = SubResource("SpriteFrames_ht2pu")
 animation = &"dizzy_flatten"
@@ -413,16 +412,16 @@ autoplay = "idle"
 frame_progress = 0.119689
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.0359955)
+position = Vector2(0, 56.036)
 rotation = 4.71239
 scale = Vector2(1.85858, 1.85858)
 shape = SubResource("CapsuleShape2D_55blg")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-position = Vector2(0, -60.964)
+position = Vector2(0, 56)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-2.72848e-12, 60)
+position = Vector2(2.50275e-11, -1.03601)
 rotation = -1.57079
 scale = Vector2(1.25437, 1.25437)
 shape = SubResource("CapsuleShape2D_bk157")
