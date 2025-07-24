@@ -18,6 +18,7 @@ func initialize():
 	
 	#initialize sprite
 	owner.aggro = false
+	owner.z_index = -1
 	for x in [$"../../SpriteBody", $"../../SpriteHead"]: 
 		x.play("flatten")
 		x.flip_h = false
@@ -33,7 +34,6 @@ func initialize():
 	
 	$FlattenSound.play()
 	owner.set_collision_mask_value($"..".layer_dict["flatten"],true)
-	owner.z_index = -1
 	$"../../Hitbox".shape.height = 70
 	
 	
@@ -80,9 +80,9 @@ func exit():
 	struggle_threshold = 100
 	$"../../SpriteBody".scale.x = 0.23
 	owner.set_collision_mask_value($"..".layer_dict["flatten"],false)
-	owner.z_index = 0
 	$"../../Hitbox".shape.height = 48
 	$FlattenSound.pitch_scale = 1
+	owner.z_index = 0
 	owner.aggro = true
 
 

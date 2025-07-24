@@ -1,7 +1,6 @@
 extends World
 
 func _ready() -> void:
-	clear_enemies()
 	$"../../Player/PlayerBasic".set_deferred("global_position",$PlayerSpawn.global_position)
 
 

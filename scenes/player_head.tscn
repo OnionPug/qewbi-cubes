@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://18sskjwavshd" path="res://scripts/player_head.gd" id="1_c3vvt"]
 [ext_resource type="Texture2D" uid="uid://cumixbrbgcqg7" path="res://assets/Qewbi Sprites/Qewbi Headless Spritesheet.png" id="1_fgj86"]
 [ext_resource type="Texture2D" uid="uid://b1plab3qhbldp" path="res://assets/Qewbi Sprites/Qewbi Dizzy Crownless Sprites.png" id="2_aiali"]
-[ext_resource type="Script" uid="uid://cl48y4dkypd5m" path="res://scenes/head_effect_states.gd" id="2_q6iov"]
+[ext_resource type="Script" uid="uid://cl48y4dkypd5m" path="res://scripts/head_effect_states.gd" id="2_q6iov"]
 [ext_resource type="Script" uid="uid://cydhxxt0ayo4v" path="res://scripts/head_normal.gd" id="3_3h80p"]
 [ext_resource type="Script" uid="uid://xyjfisnrjnx3" path="res://scripts/head_flatten.gd" id="4_fcaqy"]
 [ext_resource type="Script" uid="uid://dcw6g1fjfytqu" path="res://scripts/camera.gd" id="6_3h80p"]

@@ -1,4 +1,4 @@
-extends Node
+extends CharacterBody2D
 
 class_name Enemy
 
@@ -10,14 +10,14 @@ var effect_level = {
 }
 
 
-var hit_damage
+var hp_damage
+var sp_damage
 var hit_cooldown
 var effect
-var effect_damage
 var speed
 
 var health
-var ai_off = false
+var ai_off
 
 func take_damage(hit_damage, hit_effect):
 	health -= hit_damage
