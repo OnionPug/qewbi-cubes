@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ca0fubfray5vk" path="res://scenes/player_basic.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dcw6g1fjfytqu" path="res://scripts/camera.gd" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://dcbu1adi1wc7g" path="res://scenes/world_apartment.tscn" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://dhhpyohaddg7n" path="res://scenes/world_1_2.tscn" id="3_iywne"]
 [ext_resource type="Script" uid="uid://b8nancwbsi1e0" path="res://scripts/health_bar.gd" id="4_iywne"]
 [ext_resource type="Script" uid="uid://c8og2yvm35qwa" path="res://scripts/shield_bar.gd" id="4_lbhrr"]
 
@@ -61,7 +61,7 @@ texture = SubResource("GradientTexture2D_u5sy4")
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Qewbi Apartment" parent="World" instance=ExtResource("3_iywne")]
+[node name="World 1-2" parent="World" instance=ExtResource("3_iywne")]
 
 [node name="Player" type="Node2D" parent="."]
 

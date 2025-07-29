@@ -19,7 +19,7 @@ var accel = false:
 
 
 func _ready():
-	speed = 20
+	speed = 15
 	ai_off = false
 	hp_damage = 1
 	effect = 'flatten'
@@ -39,11 +39,15 @@ func _physics_process(delta: float) -> void:
 	if accel == true:
 		velocity = direction * delta * speed + a
 	else:
-		velocity = a*0.95
+		velocity = a*0.90
 	
 	accel = (velocity.length()-a.length()) >= -0.05
 	
-	move_and_collide(velocity)
+	var collision_info = move_and_collide(velocity)
+	if collision_info:
+		velocity = velocity.bounce(collision_info.get_normal())
+		accel = false
+	
 
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
